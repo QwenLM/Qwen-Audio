@@ -9,7 +9,7 @@
 <br>
 
 <p align="center">
-        Qwen-Audio 🤖 | 🤗 ｜ Qwen-VL-Chat🤖 | 🤗 
+        Qwen-Audio 🤖 | 🤗 ｜ Qwen-Audio-Chat🤖 | 🤗 
 <br>
 &nbsp&nbsp<a href="https://modelscope.cn/studios/qwen/Qwen-VL-Chat-Demo/summary">Demo</a>&nbsp ｜ &nbsp<a href="https://arxiv.org/abs/2308.12966">Paper</a>&nbsp&nbsp
 </p>
