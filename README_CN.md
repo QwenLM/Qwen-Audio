@@ -24,7 +24,7 @@
 
 <br>
 <p align="center">
-    <img src="assets/framework.png" width="400"/>
+    <img src="assets/framework.png" width="800"/>
 <p>
 <br>
 
