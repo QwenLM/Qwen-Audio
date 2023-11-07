@@ -17,7 +17,7 @@
 
 ---
 
-**Qwen-Audio** (Qwen Large Audio Language Model) is the multimodal version of the large model series, Qwen (abbr. Tongyi Qianwen), proposed by Alibaba Cloud. Qwen-Audio accepts audio and text as inputs, outputs text. The contribution of Qwen-Audio include:
+**Qwen-Audio** (Qwen Large Audio Language Model) is the multimodal version of the large model series, Qwen (abbr. Tongyi Qianwen), proposed by Alibaba Cloud. Qwen-Audio accepts diverse audio (human speech, natural sound, music and song) and text as inputs, outputs text. The contribution of Qwen-Audio include:
 
 - **Fundamental audio models**: We introduce Qwen-Audio, a fundamental multi-task audio-language model that supports various tasks, languages, and audio types, serving as a universal audio understanding model. Building upon Qwen-Audio, we develop Qwen-Audio-Chat through instruction fine-tuning, enabling multi-turn dialogues and supporting diverse audio-oriented scenarios. Both Qwen-Audio and Qwen-Audio-Chat models are open-source, promoting the growth and development of the audio-text multimodal community.
 - **Multi-task learning framework for all types of audios**: To scale up audio-language pre-training, we address the challenge of variation in textual labels associated with different datasets by proposing a multi-task training framework, enabling knowledge sharing and avoiding one-to-many interference. Our model incorporates more than 30 tasks and extensive experiments show the model achieves strong performance.
@@ -51,6 +51,9 @@ The results of the evaluation are as follows:
     <img src="assets/radar.png" width="800"/>
 <p>
 
+## We Are Hiring
+
+If you are interested in joining us as full-time or intern, please contact us at ."
 
 ## License Agreement
 
