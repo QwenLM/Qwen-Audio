@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Qwen-Audio: Advancing Universal Audio Understanding via Unified Large-Scale Audio-Language Models">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qwen-Audio</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L7749G0HJZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L7749G0HJZ');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body" style="padding-bottom: 24px;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Qwen-Audio: Advancing Universal Audio Understanding via Unified Large-Scale Audio-Language Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Yunfei Chu<sup>*</sup>,</span>
+            <span class="author-block">Jin Xu<sup>*</sup>,</span>
+            <span class="author-block">Xiaohuan Zhou<sup>*</sup>,</span>
+            <span class="author-block">Qian Yang<sup></sup>,</span>
+            <span class="author-block">Chang Zhou<sup>&#8224</sup>,</span>
+            <span class="author-block">Jingren Zhou<sup></sup>,</span>
+            <br />
+            <span class="author-block">Alibaba Group<sup></sup></span>
+          </div>
+
+        
+          <div class="is-size-8 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+            <span class="author-block"><sup>&#8224</sup>Corresponding Author</span>
+          </div>
+
+
+          <!-- <div class="column has-text-centered">
+            <div class="publication-links">
+              PDF Link.
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section" style="padding-top: 0px;">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+           Recently, instruction-following audio-language models have received broad attention for audio interaction with humans.
+However, the absence of pre-trained audio models capable of handling diverse audio types and tasks has hindered progress in this field. 
+            Consequently, most existing works have only been able to support a limited range of interaction capabilities. 
+            In this paper, we develop the Qwen-Audio model and address this limitation by scaling up audio-language pre-training to cover xx tasks and various audio types, 
+            such as human speech, natural sounds, music, and songs, to facilitate universal audio understanding abilities. 
+However, directly co-training all tasks and datasets can lead to interference issues, 
+            as the textual labels associated with different datasets exhibit considerable variations due to differences in task focus, 
+            language, granularity of annotation, and text structure. 
+To overcome the one-to-many interference, 
+            we carefully design a multi-task training framework by conditioning on a sequence of hierarchical tags to the decoder for encouraging knowledge sharing and avoiding interference through shared and specified tags respectively. 
+            Remarkably, Qwen-Audio achieves impressive performance across diverse benchmark tasks without requiring any task-specific fine-tuning, 
+            surpassing its counterparts. Building upon the capabilities of Qwen-Audio, we further develop Qwen-Audio-Chat, 
+            which allows for input from various audios and text inputs, enabling multi-turn dialogues and supporting various audio-central scenarios.
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+<section class="hero teaser">
+   <div class="container is-max-desktop"> 
+     <div class="hero-body"> 
+       <div class="columns is-centered has-text-centered"> 
+         <div class="column is-four-fifths"> 
+          <h2 class="title is-3">Framework</h2>
+          <img src="./static/images/framework.png"
+                      class="interpolation-image" 
+                    alt="Interpolate start reference image."/>
+          <h2 class="has-text-centered is-8">
+            The overview of Qwen-Audio architecture and multitask-pretraining.
+          </h2>
+         </div> 
+       </div> 
+     </div> 
+   </div> 
+</section>
+
+<section class="hero teaser">
+   <div class="container is-max-desktop"> 
+     <div class="hero-body"> 
+       <div class="columns is-centered has-text-centered"> 
+         <div class="column is-four-fifths"> 
+          <h2 class="title is-3">Performance</h2>
+          <img src="./static/audio/radar.png"
+                      class="interpolation-image" 
+                    alt="Interpolate start reference image."/>
+          <h2 class="has-text-centered is-8">
+          </h2>
+         </div> 
+       </div> 
+     </div> 
+   </div> 
+</section>
+
+
+<!--  -----------------------------------------------  Two language Demo Ready  ------------------------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3"></h2>
+
+
+         <head>
+          <script>
+            function toggleLanguage(language) {
+              var elements = document.getElementsByClassName("language");
+              for (var i = 0; i < elements.length; i++) {
+                if (elements[i].lang === language) {
+                  elements[i].style.display = "block";
+                } else {
+                  elements[i].style.display = "none";
+                }
+              }
+            }
+          </script>
+        </head>
+        <body>
+          <button onclick="toggleLanguage('en')">Demo</button>
+          <button onclick="toggleLanguage('zh')">样例</button>
+         </body>
+
+         <head>
+            <style>
+              table {
+                border-collapse: collapse;
+              }
+              td {
+                padding: 10px;
+              }
+              .cell-1 {
+                background-color: #B1D1F1;
+                color: #17202A;
+              }
+              .cell-2 {
+                background-color: #F7E1BE;
+                color: #17202A;;
+              }
+              .cell-3 {
+                background-color: green;
+              }
+            </style>
+          </head>
+         
+           </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+
+<!-- ----------------------------------------------  English Version START---------------------------------------------- -->
+<section class="hero is-light is-small">
+   <div class="language" lang="en" style="display: block;">
+    <h2>
+      
+
+  
+<!--  -----------------------  Multilingual ASR and Translation  ---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">Multilingual ASR and Translation</h2>
+                <table class="table" style="background-color: transparent;">
+                <thead>
+                  <tr>
+                    <th align="center"><strong></strong></th>
+                    <th align="center"><strong></strong></th>
+                    <th align="center"><strong></strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                    <td width: 200px"><img src="./static/images/团建交流群.png" > </td>
+                    <td style="text-align: center;vertical-align:middle;font-size:larger;width: 1000px">Team Building Group(5)</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td  width: 200px "><img src="./static/images/avatar31.png"></td>
+                    <td  class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/a_中文.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td  style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td  style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">recognize the speech, and translate it into English</td>
+                    <td  style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td  style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">OK. The sentence “大家好我们来讨论一下公司周末团建的地点吧大家有什么意见呢” translated into English is “Hello, let’s discuss the location for our company’s weekend team building. What are your opinions?”.</td>
+                    <td  style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+            
+                  <tr>
+                    <td width: 200px"><img src="./static/images/avatar19.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/en.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">recognize the speech, and translate it into English</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">OK. The sentence “I think we can go to the countryside and find a beautiful spot.” translated into English is “I think we can go to the countryside and find a beautiful spot.”</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+
+                   <tr>
+                    <td width: 200px"><img src="./static/images/avatar12.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/sample.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">recognize the speech, and translate it into English</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">OK. The sentence “わかりました。田舎に行くことに同意します。田舎暮らしを体験してみるのもいいかもしれません。” translated into English is “I understand. I agree to go to the countryside. It’s also good to experience country life.”</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+
+                   <tr>
+                    <td width: 200px"><img src="./static/images/avatar16.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/es.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                   <td  class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">recognize the speech, and translate it into English</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">OK. The sentence “Bueno, también podemos considerar algunas actividades divertidas como los deportes acuáticos.” translated into English is “Well, we can also consider some fun activities like water sports.”</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+
+                  <tr>
+                    <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/重庆话-骑自行车.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">recognize the speech, and translate it into English</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">OK. The sentence “对了我还想提议我们可以租一些自行车骑行一下既锻炼身体又心情愉悦” translated into English is “By the way, I also suggest that we can rent some bicycles to ride and exercise our bodies and improve our mood”.</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+                </tbody>
+                </table>
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      
+<!--  ----------------------- Multiple Audio Analysis---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">Multiple Audio Analysis</h2>
+
+          <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                           <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/重庆话.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">Recognize the gender, age, accent, emotion, and speaking content of the person in the audio, and combine these to answer his/her questions while explaining the reasons for these answers.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">
+                                                    "The person in the audio is potentially a male, approximately in his thirties, from Sichuan, China. 
+                                                    The person's emotion is calm, and they say, "What are you up to? Have you eaten yet?" 
+                                                      To keep the conversation engaging without going off-topic, we can respond with, 
+                                                      "Oh, I was just having a meal. How about you?" The reasons behind this response are as follows: 
+                                                      Firstly, we express our concern for the other person, avoiding any awkward silence. 
+                                                      Secondly, we answer their question, indicating that we are currently occupied and not idle. 
+                                                      Lastly, we invite the person to join us for a meal, which can further expand the conversation and 
+                                                    facilitate communication.
+                                                   
+                                                  </td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px">What kind of food might he enjoy if we were to have a meal together?</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">Based on the gender and age of men, as well as the regional characteristics of Sichuan, he may like spicy foods, such as hot pot, spicy stew, boiled fish in soup, etc.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/你没事吧-轻松.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/你没事吧-生气.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">"What are the emotions in audio 1 and audio 2, respectively?"</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">"The tone of the woman in audio 1 is cheerful, possibly talking about something pleasant. The tone of the woman in audio 2 is fearful, possibly discussing something terrifying."</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px">How to respond to the questions in audio 1 and audio 2?</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">In audio 1, when the woman asks if you're okay, you can respond with, "Thank you for your concern, I'm fine now, just felt a bit uncomfortable all of a sudden." <br> In audio 2, considering the woman's fearful tone and discussing something terrifying, you can respond to her with either, "I'm scared, I don't know what to do" or "I'm feeling really upset, I don't know how to face this situation."</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td style="text-align: right;vertical-align:middle;font-size: small;width: 2000px">The prompts and answers in this conversion are translated from Chinese Demo.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+  
+<!--  ----------------------- Sound  Understanding and Reasoning-----------------------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">Sound  Understanding and Reasoning</h2>
+                          <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/玻璃.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/glass-breaking-151256.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">Recognize the sound information and assume that the sound is happening around the user. Please provide the user with some handling suggestions.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">
+                                The sound is of breaking glass. Here are some suggestions for handling the situation:  <br>
+                                1. Turn off the source of the sound: If the sound is coming from a broken glass item, turn off the source of the sound as soon as possible to prevent further damage.  <br>
+                                2. Clean up the broken glass: Use gloves and a broom or vacuum cleaner to clean up the broken glass. Be careful not to cut yourself.  <br>
+                                3. Assess the damage: If the broken glass is in a location that is not easily accessible or if it poses a safety hazard, contact a professional for assistance.  <br>
+                                4. Cover the area: Cover the area where the broken glass is located to prevent injury or further damage.  <br>
+                                5. Avoid walking on broken glass: If the broken glass is on a floor, do not walk on it. Instead, use a broom or vacuum cleaner to clean it up or cover it with a piece of cardboard or tape.  <br>
+                                6. Seek medical attention: If you or someone else is injured by broken glass, seek medical attention immediately.
+                                </td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                           <tr>
+                            <td width: 200px"><img src="./static/images/男宝宝.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/943_新生儿宝宝哭啼声.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">Recognize the sound information and assume that the sound is happening around the user. Please provide the user with some handling suggestions.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">
+                              The sound is of a baby crying. Here are some suggestions for handling the situation:  <br>
+                                1. Calmly speak to the baby: Try speaking to the baby in a soothing voice, gently rocking them or singing to them. This can help calm them down and comfort them.  <br>
+                                2. Check if the baby needs something: Make sure the baby is hungry, wet, or needs a diaper change. Addressing these needs can help soothe the baby and stop them from crying.  <br>
+                                3. Create a calm environment: Make sure the baby’s environment is quiet, dark, and comfortable. White noise or soothing music can also help calm the baby.  <br>
+                                4. Take a break: If you’re feeling overwhelmed or stressed, take a break and let someone else take over for a few minutes. This can give you a chance to regroup and come back to the situation with a clearer mind.  <br>
+                                5. Seek help if needed: If the baby’s crying persists despite your best efforts, or if you’re feeling unsure about how to handle the situation, don’t hesitate to seek help from a healthcare professional. 
+                              They can provide additional guidance and support.
+                           </td>
+                          <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                           <tr>
+                            <td width: 200px"><img src="./static/images/汽车.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/11936.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">Recognize the sound information and assume that the sound is happening around the user. Please provide the user with some handling suggestions.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">
+                              The sound is of a car horn honking. Here are some suggestions for handling the situation:  <br>
+                                    1. Wait for the car to pass: If the car horn is honking repeatedly, wait for it to pass so you can continue with your activity.  <br>
+                                    2. Move to a different location: If the car horn honking is causing you discomfort or distraction, move to a different location to avoid the noise.  <br>
+                                    3. Contact the police: If the car horn honking is excessive or persistent, and you feel threatened or intimidated, contact the police for assistance.  <br>
+                                    4. Stay calm: It’s important to stay calm and not respond aggressively to the car horn honking. This can escalate the situation and potentially lead to a dangerous situation.  <br>
+                                    5. Identify the source of the horn: Try to identify the make and model of the car honking to determine if it’s a legitimate warning or if someone is being reckless.
+                                    </td>
+                              <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                         </tbody>
+                      </table>
+
+                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+      
+<!--  ----------------------- Music   Appreciation---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">Music Appreciation</h2>
+
+            <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/piano.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/music-fma-wa-0000.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">what is it</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">A solo piano piece.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/piano.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px">Describe this music in detail</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">This is a solo piano piece. It is fast tempo with a playful and humorous mood. The piece is in the key of C major and is in 4/4 time signature. The melody is played on the right hand with the left hand playing chords. The piece is a classic ragtime style.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/piano.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px">Give me some recommendations for similar music.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">
+                              
+                              Some similar music to “Solo Piano Ragtime” could be: <br> 
+                              1. “The Entertainer” by Scott Joplin   <br> 
+                              2. “Maple Leaf Rag” by Scott Joplin     <br> 
+                              3. “Ave Maria” by Franz Schubert   <br> 
+                              4. “Für Elise” by Ludwig van Beethoven   <br> 
+                              5. “The Blue Danube” by Johann Strauss II   <br> 
+                              All of these pieces are solo piano compositions and have a similar ragtime style to “Solo Piano Ragtime”. 
+                              They are all well-known and beloved pieces that are sure to please anyone who enjoys classic piano music.
+                            
+                            </td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          
+                          
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+              </div>
+            </div>
+</section>
+
+
+<!--  ----------------------- Speech  Editing  with SRWT---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3"> Speech  Editing  with SRWT</h2>
+
+          <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/SVID_20231106_170833_1.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">Edit out the word "what", so I can turn it into a meme</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">The word “what” starts at 3.04 seconds and ends at 3.23 seconds.</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/SVID_20231106_170833_11699262015.525509.wav" autoplay/>Your browser does not support the audio element.</audio></td></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/happy_new_year_en.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">change “joyful” to “interesting”</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">ok, here is the edited audio</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/happy_new_year_en1699260502.6259837_out_generated_e2e.wav" autoplay/>Your browser does not support the audio element.</audio></td></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                            <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">modify "marry" to "john"</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">ok, here is the edited audio</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/happy_new_year_en1699260909.888011_out_generated_e2e.wav" autoplay/>Your browser does not support the audio element.</audio></td></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                        
+      
+     </div>
+  </div>
+</div>
+</div>
+</section>
+
+         
+
+<!--  ----------------------- Audio-Motivated Creative Writing ---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">Audio-Motivated Creative Writing</h2>
+
+            <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/s433.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">Write a poem about the above audio</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: center;vertical-align:middle;width: 2000px">
+                                         
+                                          Birds are singing in the trees, <br>
+                                          A gentle breeze is blowing free, <br>
+                                          The rustling leaves are music, <br>
+                                          As nature’s symphony goes on. <br>
+                                          
+                                          The sun is shining bright and warm,   <br>
+                                          A peaceful atmosphere is sown, <br>
+                                          In the midst of nature’s beauty, <br>
+                                          We can find serenity and duty.  <br>
+                                          
+                                          The birds take flight with ease, <br>
+                                          Their chirping voices fill the trees, <br>
+                                          A symphony of nature’s grace, <br>
+                                          A moment to pause and embrace.<br>
+                                          
+                                          The wind whispers through the branches, <br>
+                                          As the leaves dance in the branches, <br>
+                                          A peaceful moment in time, A chance to let go and unwind.  <br>
+                                          So let us take a moment here, <br>
+                                          To appreciate the beauty so dear, <br>
+                                          In the midst of nature’s wonder, <br>
+                                          We can find a sense of wonder.
+                           </td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+              </div>
+            </div>
+</section>
+
+
+      
+    </h2>
+  </div>
+</section>
+<!-- ----------------------------------------------  English Version End----------------------------------------------------- -->
+
+
+
+
+
+  
+      
+<!-- ------------------------------------------------  Chinese Version Start-------------------------------------------------- -->
+<section class="hero is-light is-small">
+   <div class="language" lang="zh" style="display: none;">
+            <h2> 
+
+  
+<!--  -----------------------  多语种ASR和翻译  ---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">多语种ASR和翻译</h2>
+         
+                <table class="table" style="background-color: transparent;">
+                <thead>
+                  <tr>
+                    <th align="center"><strong></strong></th>
+                    <th align="center"><strong></strong></th>
+                    <th align="center"><strong></strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                    <td width: 200px"><img src="./static/images/团建交流群.png" > </td>
+                    <td style="text-align: center;vertical-align:middle;font-size:larger;width: 1000px">团建交流群(5)</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td width: 200px"><img src="./static/images/avatar31.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/a_中文.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别语音，并翻译成中文</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">语音中是一个女人在说中文：“大家好我们来讨论一下公司周末团建的地点吧大家有什么意见呢”，翻译成中文是"大家好，我们来讨论一下公司周末团建的地点吧，大家有什么意见呢"。</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+            
+                  <tr>
+                    <td width: 200px"><img src="./static/images/avatar16.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/en.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别语音，并翻译成中文</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">语音中是一个男人在说英语：“I think we can go to the countryside and find a beautiful spot”，翻译成中文是"我认为我们可以去乡村，找到一个美丽的地方"。</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+
+                   <tr>
+                    <td width: 200px"><img src="./static/images/avatar12.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/sample.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别语音，并翻译成中文</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">语音中是一个男人在讲话，说的内容是"はい、田舎に行くことに同意します。田舎暮らしを体験してみるのもいいかもしれません。“，翻译成中文是"是的，去乡村旅行，我同意。体验乡村生活也不错。”</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+
+                   <tr>
+                    <td width: 200px"><img src="./static/images/avatar19.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/es.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                   <td  class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别语音，并翻译成中文</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">语音中是一个男人在讲话，说的内容是" Bueno, también podemos considerar algunas actividades divertidas como los deportes acuáticos.“，翻译成中文是"好的，我们也可以考虑一些有趣的活动，比如水上运动。”。</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+
+                  <tr>
+                    <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                    <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/重庆话-骑自行车.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                   <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别语音，并翻译成中文</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                    <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">语音中是一个男人在说西南官话-成都话：“对了我还想提议我们可以租一些自行车骑行一下既锻炼身体又心情愉悦”，翻译成中文是"对了，我还想提议我们可以租一些自行车骑行一下，既锻炼身体又心情愉悦"。</td>
+                    <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                  </tr>
+                </tbody>
+                </table>
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<!--  -----------------------语音理解---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">语音理解</h2>
+
+          <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/重庆话.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别音频中的人的性别，年龄，口音，情绪和说话内容，结合这些该怎么回答他的问题能够不把天聊死，并解释这些回答的原因</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">音频中的人可能是男性，大概30多岁，是中国四川人，情绪是平淡的，说的是“你在干啥子勒吃饭没得勒”。为了不把天聊死，我们可以回答：“哦，我刚刚在吃，你呢？”。这样回答的原因是：首先，我们表达了对对方的关心，避免了冷场；其次，我们回答了对方的问题，表示自己正在做事情，没有闲着；最后，我们邀请对方一起吃饭，可以进一步展开话题和交流。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px">如果一起吃饭，他可能会喜欢吃什么</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">根据男人的性别和年龄，以及四川的地域特征，他可能喜欢辣味的食物，例如火锅，麻辣烫，水煮鱼等。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/你没事吧-轻松.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/你没事吧-生气.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">音频1和音频2分别是什么情绪</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">音频1中的女人的语气是开心的，可能在说一些愉快的事情。音频2中的女人的语气是惊恐的，可能在说一些可怕的事情。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px"> 应该如何回复音频1和音频2的问题</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">音频1中的女人问到你没事吧，你可以这样回答：“谢谢你的关心，我没事了，只是突然有点不舒服“。<br> 音频2中的女人的语气是惊恐的，可能在说一些可怕的事情。你可以这样回答她：“我很害怕，我不知道该怎么办”或者“我很难过，我不知道怎么面对这种情况”。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+<!--  ----------------------- 场景理解---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">场景理解</h2>
+         
+                <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/玻璃.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/glass-breaking-151256.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别声音信息，并且假设这个声音是发生在用户身边，请给用户一些处理建议</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">音频中是玻璃摔碎在地板上的声音。这种声音很可能发生在用户家中或办公室等场合。如果用户听到这种声音，他们可以采取以下措施：<br>
+                                                                                                1.  首先，他们应该检查周围是否有玻璃碎片等危险物品，以确保安全。 <br>
+                                                                                                2.  其次，他们可以尝试使用吸尘器或扫帚和簸箕等工具来清理碎片。 <br>
+                                                                                                3.  如果碎片难以清理，他们可以请求专业人士的帮助，例如玻璃维修工人或清洁服务人员。 <br>
+                                                                                                4.  最后，用户可以联系他们的保险公司，看是否在保险范围内，以便获得相应的赔偿或帮助。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                           <tr>
+                            <td width: 200px"><img src="./static/images/男宝宝.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/943_新生儿宝宝哭啼声.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别声音信息，并且假设这个声音是发生在用户身边，请给用户一些处理建议</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">音频中有婴儿啼哭的声音。婴儿哭泣可能是因为感到饥饿、口渴、困倦或不舒服。如果您是婴儿的家长或者照顾者，您可以尝试以下方法来处理婴儿的哭泣： <br>
+                                                                                          1.  帮助婴儿获得食物或饮料，例如喂他们吃奶或喝水。 <br>
+                                                                                          2.  抚慰婴儿，轻轻地拥抱或摇摆他们，让它们感到舒适和安心。 <br>
+                                                                                          3.  了解婴儿是否需要换尿布或清洁身体，以及他们是否感到不适或疼痛。 <br>
+                                                                                          4.  帮助婴儿打个盹，让他们入睡或小睡一会儿。 <br>
+                                                                                          5.  保持安静和舒适的空间，让婴儿感到放松和平静。 <br>
+                                                                                          请注意，婴儿的哭泣是他们表达需要和情感的方式。冷静处理并细心观察婴儿的需求和行为，以确定如何最好地满足他们的需求。</td>
+                          <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                           <tr>
+                            <td width: 200px"><img src="./static/images/汽车.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/11936.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">识别声音信息，并且假设这个声音是发生在用户身边，请给用户一些处理建议</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">音频中是汽车喇叭声。如果是汽车喇叭声，可能是因为以下原因：<br>
+                                                                                1.  汽车停在路口或马路上，正在按喇叭催促或者提醒行人或车辆。 <br>
+                                                                                2.  汽车正在行驶，按喇叭是为了提醒行人或车辆注意避让或者表示不满。 <br>
+                                                                                3.  汽车喇叭坏了，持续不断地发出异响。 </td>
+                              <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+<!--  -----------------------音乐鉴赏---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3">音乐鉴赏</h2>
+
+            <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/piano.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/music-fma-wa-0000.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">鉴赏下这个音乐</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">轻松的钢琴曲</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/piano.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px">写段赏析</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">这段音乐以钢琴独奏的方式呈现，演奏者以精湛的技巧和熟练的演奏技巧将这首曲子演绎的非常出色。音乐的韵律简明欢快，钢琴的音色清脆悦耳，给人一种轻松愉悦的感觉。音乐的节奏轻快，旋律流畅，让人不禁跟着节奏一起舞动。整首曲子充满了轻松愉快的氛围，让人感受到自由和快乐。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/piano.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px">这首乐曲是大调还是小调</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">根据音符的排列，这首乐曲是大调。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/piano.png"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:middle;width: 2000px">大调和小调有什么区别</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">大调和小调是音乐理论中的两个基本概念，它们用来表示音高和情感。<br>
+                                  大调具有欢快、明亮、活泼、激昂等特点，其特点是高音部比低音部高一个音级，且大调的每个音都比它下面的音高。例如，C大调的音阶是C、D、E、F、G、A、B，其中C是高音，B是低音。<br>
+                                  小调具有柔和、忧郁、沉思、悲伤等特点，其特点是低音部比高音部高一个音级，且小调的每个音都比它上面的音低。例如，C小调的音阶是C、D、E、F、G、A、B，其中C是低音，B是高音。<br>
+                                  大调和小调是音乐理论中最基本的调式，它们构成了音乐的五种基本调式（大调、小调、和声、旋律、无调式）之一。音乐的调式不仅影响音高和情感，还影响和声、节奏、旋律等音乐元素。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          
+                          
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+              </div>
+            </div>
+</section>
+
+
+<!--  ----------------------- 语音定位与编辑---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3"> 语音定位与编辑</h2>
+
+            <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/Camera_xhs_1698804434694.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">把“哪里来的胆识”截取，我要做鬼畜视频</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">“哪里来的胆识”开始于第5.76秒，结束于第7.09秒</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/Camera_xhs_16988044346941698804587.606135.wav" autoplay/>Your browser does not support the audio element.</audio></td></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/新年祝福.wav" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">把“天天”改成“每一天”</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">好的，以下是编辑后的音频：</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/新年祝福1698677606.4097507_out_generated_e2e.wav" autoplay/>Your browser does not support the audio element.</audio></td></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                            <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">把人名改成“小红”</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px">好的，以下是编辑后的音频：</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: left;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/新年祝福1698677421.9490333_out_generated_e2e.wav" autoplay/>Your browser does not support the audio element.</audio></td></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                   </div>
+                </div>
+              </div>
+            </div>
+</section>
+
+
+
+<!--  ----------------------- 自由创作---------------------------------  -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths"> 
+          <h2 class="title is-3"> 自由创作</h2>
+
+            <table class="table" style="background-color: transparent;">
+                        <thead>
+                          <tr>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                            <th align="center"><strong></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                            <td width: 200px"> </td>
+                            <td style="text-align: center;vertical-align:middle;width: 1000px"></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                          <tr>
+                            <td width: 200px"><img src="./static/images/avatar06.png"></td>
+                            <td class="cell-1" style="text-align: center;vertical-align:middle;width: 2000px"><audio controls="controls" style="width: 100%;"><source src="./static/audio/s433.mp3" autoplay/>Your browser does not support the audio element.</audio></td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-1" style="text-align: left;vertical-align:left;font-size: small;width: 2000px">根据声音，写首诗</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                          </tr>
+                           <tr>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"></td>
+                            <td class="cell-2" style="text-align: center;vertical-align:middle;width: 2000px">在山中，我听到风声，<br>
+                                        它在林间呼啸而过，<br>
+                                        带走树的叶子和灰尘，<br>
+                                        让这个世界变得清新。<br>
+                                        我听到鸟儿在唱歌，<br>
+                                        它们在枝头欢快地跳跃，<br>
+                                        唱着美妙的歌曲，<br>
+                                        让人心情愉悦和放松。<br>
+                                        在山中，我感到宁静和和平，<br>
+                                        心情像风一样自由自在，<br>
+                                        我听到自然的声音，<br>
+                                        它们在唱着一首美丽的歌。</td>
+                            <td style="text-align: center;vertical-align:middle;width: 200px"><img src="./static/images/qwen.png"></td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                        </h2>
+                        </div>  
+                    </body>
+                   </div>
+                </div>
+              </div>
+            </div>
+</section>
+
+
+              
+              
+ </h2>
+ </div>
+</section>
+<!-- ------------------------------------------------  Chinese Version End-------------------------------------------------- -->
+
+<footer class="footer">
+          <div class="container">
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <h2 class="title is-3">Contact</h2>
+                <div class="content">
+                  <p>
+                  ## We Are Hiring
+                If you are interested in joining us as full-time or intern, 
+                please contact us at qwen_audio@list.alibaba-inc.com."
+                  </p>
+                  <p>
+                    ## 团队招聘
+                我们是通义千问语音多模态团队，致力于以通义千问为核心，拓展音频多模态理解和生成能力，
+                    实现自由灵活的音频交互。目前团队蓬勃发展中，如有意向实习或全职加入我们，
+                    请发送简历至 qwen_audio@list.alibaba-inc.com .
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+</footer>
+  
+  
+<!-- --------------------------------- Licenses ---------------------------------- -->
+        <footer class="footer">
+          <div class="container">
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <h2 class="title is-3">Licenses</h2>
+                <div class="content">
+                  <p>
+                   Researchers and developers are free to use the codes and model weights of both 
+                    Qwen-Audio and Qwen-Audio-Chat. We also allow their commercial use. 
+                    Check our license at <a href=" https://github.com/QwenLM/Qwen-Audio/blob/main/LICENSE.txt">license </a> for more details.
+                    <br>
+                  </p>
+                  <p>
+                   研究人员与开发者可使用Qwen-Audio和Qwen-Audio-Chat或进行二次开发。我们同样允许商业使用，
+                    具体细节请查看<a href=" https://github.com/QwenLM/Qwen-Audio/blob/main/LICENSE.txt">license </a> 。如需商用，请填写
+                    <a href=" https://dashscope.console.aliyun.com/openModelApply/qianwen">问卷 </a> 申请。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+</body>
+</html>
