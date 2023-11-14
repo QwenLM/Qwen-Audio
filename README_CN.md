@@ -11,7 +11,7 @@
 <p align="center">
         Qwen-Audio 🤖 | 🤗 ｜ Qwen-Audio-Chat🤖 | 🤗 
 <br>
-&nbsp&nbsp<a href="https://modelscope.cn/studios/qwen/Qwen-VL-Chat-Demo/summary">Demo</a>&nbsp ｜ &nbsp<a href="https://arxiv.org/abs/2308.12966">Paper</a>&nbsp&nbsp
+&nbsp&nbsp<a href="https://qwen-audio.github.io/Qwen-Audio/">Demo</a>&nbsp ｜ &nbsp<a href="https://arxiv.org/abs/2308.12966">Paper</a>&nbsp&nbsp
 </p>
 <br><br>
 
