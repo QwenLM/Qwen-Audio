@@ -45,7 +45,7 @@
 
 评测结果如下：
 <p align="center">
-    <img src="assets/radar.png" width="800"/>
+    <img src="assets/radar_new.png" width="800"/>
 <p>
 
 
