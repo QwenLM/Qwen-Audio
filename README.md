@@ -53,7 +53,7 @@ The results of the evaluation are as follows:
 
 ## We Are Hiring
 
-If you are interested in joining us as full-time or intern, please contact us at qwen_audio@list.alibaba-inc.com."
+If you are interested in joining us as full-time or intern, please contact us at qwen_audio@list.alibaba-inc.com.
 
 ## License Agreement
 
