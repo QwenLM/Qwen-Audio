@@ -48,7 +48,7 @@ We evaluated the Qwen-Audio's abilities on the standard benchmarks as follows:
 
 The results of the evaluation are as follows:
 <p align="center">
-    <img src="assets/radar.png" width="800"/>
+    <img src="assets/radar_new.png" width="800"/>
 <p>
 
 ## We Are Hiring
