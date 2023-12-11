@@ -49,7 +49,7 @@ def _load_model_tokenizer(args):
 
     if args.cpu_only:
         device_map = "cpu"
-    if torch.backends.mps.is_available():
+    elif torch.backends.mps.is_available():
         # For Mac computers with Apple silicon or AMD GPUs
         device_map = device("mps")
     else:
