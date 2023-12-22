@@ -15,6 +15,18 @@
 </p>
 <br><br>
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/speech-recognition-on-aishell-1)](https://paperswithcode.com/sota/speech-recognition-on-aishell-1?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/speech-recognition-on-aishell-2-test-android-1)](https://paperswithcode.com/sota/speech-recognition-on-aishell-2-test-android-1?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/speech-recognition-on-aishell-2-test-ios)](https://paperswithcode.com/sota/speech-recognition-on-aishell-2-test-ios?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/speech-recognition-on-aishell-2-test-mic-1)](https://paperswithcode.com/sota/speech-recognition-on-aishell-2-test-mic-1?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/acoustic-scene-classification-on-cochlscene)](https://paperswithcode.com/sota/acoustic-scene-classification-on-cochlscene?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/acoustic-scene-classification-on-tut-acoustic)](https://paperswithcode.com/sota/acoustic-scene-classification-on-tut-acoustic?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/audio-classification-on-vocalsound)](https://paperswithcode.com/sota/audio-classification-on-vocalsound?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/audio-captioning-on-clotho)](https://paperswithcode.com/sota/audio-captioning-on-clotho?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/speech-recognition-on-librispeech-test-clean)](https://paperswithcode.com/sota/speech-recognition-on-librispeech-test-clean?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/emotion-recognition-in-conversation-on-meld)](https://paperswithcode.com/sota/emotion-recognition-in-conversation-on-meld?p=qwen-audio-advancing-universal-audio)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/qwen-audio-advancing-universal-audio/speech-recognition-on-librispeech-test-other)](https://paperswithcode.com/sota/speech-recognition-on-librispeech-test-other?p=qwen-audio-advancing-universal-audio)
+
 **Qwen-Audio** 是阿里云研发的大规模音频语言模型（Large Audio Language Model）。Qwen-Audio 可以以多种音频 (包括说话人语音、自然音、音乐、歌声）和文本作为输入，并以文本作为输出。Qwen-Audio 系列模型的特点包括：
 
 - **音频基石模型**：Qwen-Audio是一个性能卓越的通用的音频理解模型，支持各种任务、语言和音频类型。在Qwen-Audio的基础上，我们通过指令微调开发了Qwen-Audio-Chat，支持多轮、多语言、多语言对话。Qwen-Audio和Qwen-Audio-Chat模型均已开源。
