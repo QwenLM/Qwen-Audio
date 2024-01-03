@@ -17,6 +17,8 @@ import tempfile
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
 from pydub import AudioSegment
+import torch
+from torch import device, ones
 
 DEFAULT_CKPT_PATH = 'Qwen/Qwen-Audio-Chat'
 
@@ -47,6 +49,9 @@ def _load_model_tokenizer(args):
 
     if args.cpu_only:
         device_map = "cpu"
+    elif torch.backends.mps.is_available():
+        # For Mac computers with Apple silicon or AMD GPUs
+        device_map = device("mps")
     else:
         device_map = "cuda"
 
@@ -128,7 +133,7 @@ def _launch_demo(args, model, tokenizer):
         if (len(all_time_stamps) > 0) and (len(all_time_stamps) % 2 ==0) and last_audio:
             ts_float = [ float(t.replace("<|","").replace("|>","")) for t in all_time_stamps]
             ts_float_pair = [ts_float[i:i + 2] for i in range(0,len(all_time_stamps),2)]
-            # 读取音频文件
+             # 读取音频文件 / Dòu qǔ yīnpín wénjiàn ==> Read audio files
             format = os.path.splitext(last_audio)[-1].replace(".","")
             audio_file = AudioSegment.from_file(last_audio, format=format)
             chat_response_t = response.replace("<|", "").replace("|>", "")
@@ -136,10 +141,10 @@ def _launch_demo(args, model, tokenizer):
             temp_dir = secrets.token_hex(20)
             temp_dir = Path(uploaded_file_dir) / temp_dir
             temp_dir.mkdir(exist_ok=True, parents=True)
-            # 截取音频文件
+            # 截取音频文件 / Jiéqǔ yīnpín wénjiàn ==> Capture audio files
             for pair in ts_float_pair:
                 audio_clip = audio_file[pair[0] * 1000: pair[1] * 1000]
-                # 保存音频文件
+                # 保存音频文件 / Bǎocún yīnpín wénjiàn ==> Save audio files
                 name = f"tmp{secrets.token_hex(5)}.{format}"
                 filename = temp_dir / name
                 audio_clip.export(filename, format=format)
