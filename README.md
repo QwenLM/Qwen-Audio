@@ -198,7 +198,7 @@ The details of evaluation are as follows:
   </tr>
 </table>
 
-### Soeech-to-text Translation
+### Speech-to-text Translation
 <table>
 <thead>
 <tr>
