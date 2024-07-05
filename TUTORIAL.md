@@ -21,7 +21,7 @@ After executing the above code, the ```tokenizer``` refers to the tokenizer used
 ## Usage of Qwen-Audio-Chat
 ### **Multi-turn Audio-central Understanding**
 #### **First Question**
-Let's begin with a simple case shown beloe. The file ```assets/audio/1272-128104-0000.flac``` an audio clip from dev/test set of librispeec.
+Let's begin with a simple case shown below. The file ```assets/audio/1272-128104-0000.flac``` an audio clip from dev/test set of librispeec.
 
 [1272-128104-0000.flac](http://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen-Audio/1272-128104-0000.webm)
 
